@@ -17,7 +17,6 @@ const NoteState = (props) => {
             }
         });
         const json = await response.json();
-        console.log(json);
         setNotes(json);
 
     }
@@ -35,19 +34,7 @@ const NoteState = (props) => {
             body: JSON.stringify({title, description, tag})
         });
 
-        const json = await response.json();
-        console.log(json);
-
-        console.log("adding a new note");
-        const note = {
-            "_id": "62f3bc86d81e4bbfa0d9fe1d",
-            "user": "62f112a63c52c3cd5984c091",
-            "title": title,
-            "description": description,
-            "tag": tag,
-            "date": "2022-08-10T14:11:18.741Z",
-            "__v": 0
-        };
+        const note = await response.json();
         setNotes(notes.concat(note))
     }
 
@@ -61,10 +48,7 @@ const NoteState = (props) => {
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJmMTEyYTYzYzUyYzNjZDU5ODRjMDkxIn0sImlhdCI6MTY2MDAzMzAwNH0.M2GRXnMq1LBJIkMhmFU3IJN1khdBkFzzL3C-MR-HzUk'
             }
         });
-        const json = response.json();
-        console.log(json);
-
-        console.log("deleting the note with id " + id);
+        const json = await response.json();
         const newNotes = notes.filter((note) => { return note._id !== id });
         setNotes(newNotes);
     }
@@ -81,7 +65,6 @@ const NoteState = (props) => {
             body: JSON.stringify({title, description, tag})
         });
         const json = await response.json();
-        console.log(json);
         
         let newNotes = JSON.parse(JSON.stringify(notes))
         // Logic to edit in client
@@ -94,7 +77,6 @@ const NoteState = (props) => {
                 break;
             }
         }
-        console.log(id, notes);
         setNotes(newNotes);
     }
 
