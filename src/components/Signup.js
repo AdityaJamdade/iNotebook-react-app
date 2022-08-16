@@ -18,7 +18,7 @@ const Signup = (props) => {
         console.log(json);
         if (json.success) {
             // Save the auth token and redirect
-            localStorage.setItem('token', json.authtoken);
+            localStorage.setItem('token', json.authToken);
             navigate("/");
             props.showAlert("Account created successfully!", "success");
         }
@@ -33,7 +33,8 @@ const Signup = (props) => {
     }
 
     return (
-        <div className='container'>
+        <div className='container mt-2'>
+        <h2 className='mb-2 text-center'>Create an Account for using iNotebook</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
@@ -53,7 +54,7 @@ const Signup = (props) => {
                     <input type="password" className="form-control" id="cpassword" name='cpassword' onChange={onChange} minLength={5} required />
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Sign up</button>
             </form>
         </div>
     )
